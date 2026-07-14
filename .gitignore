@@ -1,0 +1,12 @@
+.DS_Store
+.mimic/
+.pytest_cache/
+.ruff_cache/
+.uv-cache/
+.venv/
+__pycache__/
+*.egg-info/
+*.py[cod]
+uv.lock
+dist/
+build/

@@ -1,0 +1,47 @@
+{
+  "name": "w158_ccpolicy_battery_anchor",
+  "guidance": "Use the response options literally. Keep cost, policy, and environmental tradeoffs calibrated rather than making every climate-concerned support type favor every policy.",
+  "components": [
+    {
+      "type": "axes",
+      "name": "battery_anchor_maximin",
+      "sampler": {
+        "method": "maximin",
+        "n": 96,
+        "seed": 20260625
+      },
+      "axes": {
+        "climate_concern": [
+          "low concern about climate change",
+          "moderate concern about climate change",
+          "high concern about climate change"
+        ],
+        "government_intervention": [
+          "skeptical of government regulation and mandates",
+          "pragmatic about government action when benefits are clear",
+          "supportive of strong public climate policy"
+        ],
+        "market_cost_sensitivity": [
+          "highly sensitive to consumer and business costs",
+          "balances costs against environmental benefits",
+          "willing to accept substantial costs for emissions reductions"
+        ],
+        "technology_optimism": [
+          "skeptical that new technology will solve climate problems",
+          "moderately optimistic about clean technology",
+          "highly optimistic about clean technology and carbon capture"
+        ],
+        "corporate_accountability": [
+          "opposes singling out corporations for climate costs",
+          "supports some corporate responsibility for emissions",
+          "strongly supports making corporations pay for emissions"
+        ],
+        "response_style": [
+          "requires a strong reason to favor a policy",
+          "is willing to favor policies with mixed tradeoffs",
+          "tends to favor most climate policies unless costs are salient"
+        ]
+      }
+    }
+  ]
+}

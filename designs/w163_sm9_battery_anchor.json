@@ -1,0 +1,47 @@
+{
+  "name": "w163_sm9_battery_anchor",
+  "guidance": "Use middle categories for mixed or context-dependent views of social media. Reserve very strong answers for support types whose own outlook clearly matches the item wording.",
+  "components": [
+    {
+      "type": "axes",
+      "name": "battery_anchor_maximin",
+      "sampler": {
+        "method": "maximin",
+        "n": 96,
+        "seed": 20260625
+      },
+      "axes": {
+        "social_media_optimism": [
+          "sees social media as mostly harmful",
+          "sees social media as mixed",
+          "sees social media as mostly helpful"
+        ],
+        "voice_and_accountability": [
+          "skeptical that online voice creates real accountability",
+          "believes social media sometimes amplifies underrepresented voices",
+          "strongly believes social media empowers people and accountability"
+        ],
+        "distraction_cynicism": [
+          "low concern about distraction and performative activism",
+          "moderate concern about distraction and performative activism",
+          "high concern about distraction and performative activism"
+        ],
+        "news_attention": [
+          "rarely learns important issues through social media",
+          "sometimes learns important issues through social media",
+          "often learns important issues through social media"
+        ],
+        "political_engagement": [
+          "not very politically engaged online",
+          "moderately politically engaged online",
+          "highly politically engaged online"
+        ],
+        "response_style": [
+          "reserves very well for statements that clearly describe social media",
+          "uses somewhat well for mixed or context-dependent statements",
+          "answers more strongly when a statement matches personal experience"
+        ]
+      }
+    }
+  ]
+}

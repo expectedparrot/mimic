@@ -1,0 +1,43 @@
+{
+  "name": "w154_diff1_battery_anchor",
+  "guidance": "Use the response options literally. Do not mechanically choose the more socially approved answer. For binary items, use each option only when the support type's dimensions make that answer plausible.",
+  "components": [
+    {
+      "type": "axes",
+      "name": "battery_anchor_maximin",
+      "sampler": {
+        "method": "maximin",
+        "n": 96,
+        "seed": 20260625
+      },
+      "axes": {
+        "gender_difference_beliefs": [
+          "believes men and women are mostly similar across domains",
+          "believes men and women differ in some domains but not others",
+          "believes men and women are basically different in many domains"
+        ],
+        "biology_vs_socialization": [
+          "emphasizes biology and innate differences",
+          "emphasizes socialization and culture",
+          "sees both biology and socialization as relevant"
+        ],
+        "gender_role_orientation": [
+          "traditional about gender roles",
+          "moderate about gender roles",
+          "egalitarian about gender roles"
+        ],
+        "domain_focus": [
+          "expects differences mainly in physical domains",
+          "expects differences mainly in emotional-expression domains",
+          "expects differences mainly in workplace and interests domains",
+          "expects few domain-level differences"
+        ],
+        "response_style": [
+          "uses the similar option unless differences seem substantial",
+          "uses the different option when even moderate differences seem plausible",
+          "distinguishes sharply by domain rather than answering the same way throughout"
+        ]
+      }
+    }
+  ]
+}

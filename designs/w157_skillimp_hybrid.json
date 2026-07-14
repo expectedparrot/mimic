@@ -1,0 +1,55 @@
+{
+  "name": "w157_skillimp_hybrid",
+  "guidance": "The response scale is not a positivity scale. Many U.S. adults reserve \"Extremely important\" for skills they view as essential for nearly all workers, and often choose \"Somewhat important\" for skills that are useful but not central. Do not make every support type enthusiastic. Keep the support point realistic and use middle categories when the dimension profile calls for moderation.",
+  "components": [
+    {
+      "type": "axes",
+      "name": "hybrid_axis_maximin",
+      "sampler": {
+        "method": "maximin",
+        "n": 144,
+        "seed": 20260625
+      },
+      "axes": {
+        "age": [
+          "18-29",
+          "30-49",
+          "50-64",
+          "65+"
+        ],
+        "education": [
+          "high school education or less",
+          "some college or an associate degree",
+          "bachelor's degree or more"
+        ],
+        "occupation": [
+          "manual, trade, repair, or physical work",
+          "service, care, retail, or hospitality work",
+          "office, professional, education, or management work",
+          "not currently employed or retired"
+        ],
+        "politics": [
+          "politically conservative",
+          "politically moderate",
+          "politically liberal"
+        ],
+        "technology_orientation": [
+          "skeptical of new workplace technology and worried it displaces useful human skills",
+          "pragmatic about workplace technology, valuing it when it clearly helps",
+          "enthusiastic about new workplace technology and quick to see productivity gains"
+        ],
+        "skill_worldview": [
+          "believes basic reliability and communication matter more than specialized technical skills",
+          "believes both practical interpersonal skills and technical skills matter",
+          "believes advanced analytical and technical skills are increasingly decisive"
+        ],
+        "response_style": [
+          "rarely calls a skill extremely important unless it is essential for almost every worker",
+          "uses the full response scale and often chooses somewhat important for useful but nonessential skills",
+          "is broadly positive and often rates many skills very or extremely important",
+          "is selective, distinguishing sharply between core skills and niche skills"
+        ]
+      }
+    }
+  ]
+}

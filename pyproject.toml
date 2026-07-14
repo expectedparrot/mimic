@@ -1,0 +1,56 @@
+[project]
+name = "mimic"
+version = "0.1.0"
+description = "Python CLI for constructing marginal-matching digital twin support banks."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "John Joseph Horton" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    # Track edsl main: the .ep git-package accessor (AgentList/Results .git.save/.git.load,
+    # which mimic's export/register and the calibrated-twin AgentList delivery depend on)
+    # lives on main but is not yet in a PyPI release (>=1.0.8 resolves to an accessor-less
+    # build). Repin to a tagged release once the git accessor ships to PyPI.
+    "edsl @ git+https://github.com/expectedparrot/edsl.git@main",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "PyYAML>=6.0",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+mimic = "mimic.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mimic*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

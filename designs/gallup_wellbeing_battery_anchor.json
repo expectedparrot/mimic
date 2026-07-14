@@ -1,0 +1,52 @@
+{
+  "name": "gallup_wellbeing_battery_anchor",
+  "guidance": "Keep positive well-being answers calibrated. Use middle categories for mixed circumstances, and reserve extreme agreement for support types whose circumstances strongly fit the statement.",
+  "components": [
+    {
+      "type": "axes",
+      "name": "battery_anchor_maximin",
+      "sampler": {
+        "method": "maximin",
+        "n": 96,
+        "seed": 20260625
+      },
+      "axes": {
+        "future_life_optimism": [
+          "pessimistic about life five years from now",
+          "moderately optimistic about life five years from now",
+          "highly optimistic about life five years from now"
+        ],
+        "daily_purpose": [
+          "low daily purpose and limited interest in daily activities",
+          "moderate daily purpose",
+          "high daily purpose and engagement"
+        ],
+        "social_support": [
+          "low family and friend support",
+          "moderate family and friend support",
+          "strong family and friend support"
+        ],
+        "financial_security": [
+          "financially strained and often worried about money",
+          "financially mixed or uncertain",
+          "financially secure"
+        ],
+        "physical_health": [
+          "poor or limited physical health",
+          "average physical health",
+          "very strong physical health"
+        ],
+        "community_fit": [
+          "feels poorly matched to the local area",
+          "feels moderately matched to the local area",
+          "feels very well matched to the local area"
+        ],
+        "response_style": [
+          "uses extreme agreement only for very strong well-being",
+          "uses middle categories for mixed circumstances",
+          "answers strongly when the statement matches daily experience"
+        ]
+      }
+    }
+  ]
+}

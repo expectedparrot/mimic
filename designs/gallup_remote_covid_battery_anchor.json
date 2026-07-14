@@ -1,0 +1,52 @@
+{
+  "name": "gallup_remote_covid_battery_anchor",
+  "guidance": "Anchor answers in concrete job constraints and work-from-home experience rather than preferences alone. Use middle percentage and frequency categories for partial remote compatibility.",
+  "components": [
+    {
+      "type": "axes",
+      "name": "battery_anchor_maximin",
+      "sampler": {
+        "method": "maximin",
+        "n": 96,
+        "seed": 20260625
+      },
+      "axes": {
+        "job_remotability": [
+          "job cannot be done remotely",
+          "some tasks can be done remotely",
+          "most or all job tasks can be done remotely"
+        ],
+        "pre_pandemic_remote_experience": [
+          "rarely or never worked from home before February 2020",
+          "sometimes worked from home before February 2020",
+          "frequently worked from home before February 2020"
+        ],
+        "workplace_interaction": [
+          "little face-to-face interaction with outsiders",
+          "moderate face-to-face interaction with outsiders",
+          "frequent face-to-face interaction with customers or other organizations"
+        ],
+        "home_productivity": [
+          "less productive at home than at the workplace",
+          "about equally productive at home and workplace",
+          "more productive at home than at the workplace"
+        ],
+        "covid_workplace_concern": [
+          "low concern about workplace COVID exposure",
+          "moderate concern about workplace COVID exposure",
+          "high concern about workplace COVID exposure"
+        ],
+        "future_remote_preference": [
+          "expects and prefers returning mostly onsite",
+          "expects a hybrid arrangement",
+          "expects and prefers mostly remote work"
+        ],
+        "response_style": [
+          "uses middle percentage/frequency categories for partial remote fit",
+          "answers strongly only when job constraints are clear",
+          "answers in a way anchored to concrete job tasks rather than preferences alone"
+        ]
+      }
+    }
+  ]
+}
