@@ -23,20 +23,20 @@ It does not run model jobs itself.
 
 ## Install
 
-From a clone of this repository:
+Install from GitHub:
 
 ```bash
-pip install -e .
+pip install "git+https://github.com/expectedparrot/mimic.git"
 ```
 
-For development and tests:
+For local development and tests:
 
 ```bash
 pip install -e ".[test]"
 pytest -q
 ```
 
-If you are co-developing EDSL, install `mimic` first and then overlay your local
+If you are co-developing EDSL, clone `mimic`, install it locally, and then overlay your local
 EDSL checkout:
 
 ```bash
