@@ -52,6 +52,9 @@ Inspect or create battery metadata:
 mimic battery inspect data/source/normalized/W157_SKILLIMP_metadata.json
 ```
 
+A minimal example metadata file is available at
+[`examples/mini_metadata.json`](examples/mini_metadata.json).
+
 Build support prompts from a generic design file:
 
 ```bash

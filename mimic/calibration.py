@@ -10,6 +10,9 @@ from scipy.optimize import minimize
 
 from .errors import MimicError
 
+DEFAULT_RHO_VALUES = [0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3]
+SUPPORT_SELECTION_PENALTY = 0.02
+
 
 @dataclass
 class FitResult:
@@ -21,6 +24,10 @@ class FitResult:
 
 def rmse(pred: np.ndarray, truth: np.ndarray) -> float:
     return float(np.sqrt(np.mean((pred - truth) ** 2)))
+
+
+def regularization_selection_score(fit: FitResult) -> float:
+    return fit.held_in_residual + SUPPORT_SELECTION_PENALTY / np.sqrt(max(fit.effective_support, 1.0))
 
 
 def entropy_calibration_fit(X: np.ndarray, y: np.ndarray, base_weights: np.ndarray, rho: float, maxiter: int = 700) -> FitResult:
@@ -77,7 +84,7 @@ def fit_weights(mats: dict[str, np.ndarray], truth: dict[str, np.ndarray], held_
     y = np.concatenate([truth[item] for item in held_in])
     X = np.column_stack([mats[item] for item in held_in])
     fits = {rho: entropy_calibration_fit(X, y, base_weights, rho) for rho in rho_values}
-    return min(fits.items(), key=lambda kv: kv[1].held_in_residual + 0.002 / max(kv[1].effective_support, 1.0))
+    return min(fits.items(), key=lambda kv: regularization_selection_score(kv[1]))
 
 
 def write_fit_outputs(

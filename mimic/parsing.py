@@ -4,6 +4,7 @@ import ast
 import csv
 import json
 import shutil
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -124,17 +125,21 @@ def load_results_ep_to_pandas(results_path: Path) -> pd.DataFrame:
     rp = Path(results_path)
     try:
         results = None
-        # `edsl run --save/--output X.results.ep` may write a plain-JSON file at the
-        # literal path. Try that first so registration does not depend on EDSL's
-        # extension-appending loader (which looks for X.results.ep.json[.gz] and
-        # otherwise fails with a confusing "No such file" on the literal .ep name).
-        if rp.is_file():
+        # `edsl run --output X.results.ep` writes a git-package zip at the literal
+        # path. Load that directly before trying EDSL's extension-appending loader.
+        if rp.is_file() and hasattr(Results, "git") and zipfile.is_zipfile(rp):
             try:
-                results = Results.from_dict(json.loads(rp.read_text()))
+                results = Results.git.load(str(rp))
             except Exception:
                 results = None
+        # Some older workflows saved plain JSON to the literal .ep path.
+        if rp.is_file():
+            try:
+                results = results or Results.from_dict(json.loads(rp.read_text()))
+            except Exception:
+                pass
         if results is None:
-            if hasattr(Results, "git") and not rp.is_file():
+            if hasattr(Results, "git"):
                 results = Results.git.load(str(rp))
             else:
                 results = Results.load(str(rp))

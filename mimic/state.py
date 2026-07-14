@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .calibration import DEFAULT_RHO_VALUES
 from .errors import MimicError
 from .jsonlio import read_json, write_json
 
@@ -74,7 +75,7 @@ def init_workspace(output_dir: str = "mimic_work") -> dict[str, Any]:
             "created_at": utc_now(),
             "output_dir": output_dir,
             "default_model": "gpt-5.5",
-            "default_rho": [0.0003, 0.001, 0.003, 0.01, 0.03],
+            "default_rho": DEFAULT_RHO_VALUES,
         },
     )
     create_project(DEFAULT_PROJECT_ID, title="Default mimic project", use=True)

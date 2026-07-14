@@ -1,0 +1,24 @@
+{
+  "wave": "T1",
+  "battery": "DEMO",
+  "topic": "work and technology",
+  "context": "A short demonstration survey about workplace technology.",
+  "option_codes": [1, 2, 3, 4],
+  "option_labels": ["Strongly agree", "Somewhat agree", "Somewhat disagree", "Strongly disagree"],
+  "items": {
+    "ai_helpful": {
+      "variable": "AI_HELPFUL",
+      "question_stem": "How much do you agree or disagree with the following statement?",
+      "item_text": "AI tools make my work easier."
+    },
+    "training_needed": {
+      "variable": "TRAINING_NEEDED",
+      "question_stem": "How much do you agree or disagree with the following statement?",
+      "item_text": "Workers need more training to use AI tools well."
+    }
+  },
+  "truth": {
+    "ai_helpful": [0.34, 0.38, 0.18, 0.1],
+    "training_needed": [0.46, 0.35, 0.12, 0.07]
+  }
+}

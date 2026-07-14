@@ -94,13 +94,13 @@ softmax parameterization already used in `analysis/marginal_weighting_pilot.py`.
 Default `rho` grid:
 
 ```text
-0.0003, 0.001, 0.003, 0.01, 0.03
+0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3
 ```
 
 Default model-selection rule for leave-one-out:
 
 ```text
-held_in_residual + 0.002 / max(effective_support, 1.0)
+held_in_residual + 0.02 / sqrt(max(effective_support, 1.0))
 ```
 
 This rule is pre-outcome for each held-out item because it uses only held-in fit
@@ -267,7 +267,7 @@ Config fields:
   "created_at": "2026-07-13T00:00:00Z",
   "output_dir": "mimic_work",
   "default_model": "gpt-5.5",
-  "default_rho": [0.0003, 0.001, 0.003, 0.01, 0.03]
+  "default_rho": [0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3]
 }
 ```
 
@@ -898,7 +898,7 @@ mimic fit \
   --metadata data/source/normalized/W157_SKILLIMP_metadata.json \
   --marginals data/source/normalized/W157_SKILLIMP_metadata.json \
   --exclude-item a \
-  --rho 0.0003 0.001 0.003 0.01 0.03 \
+  --rho 0.0003 0.001 0.003 0.01 0.03 0.1 0.3 \
   --tag w157_pattern_coverage_support_n96_holdout_a \
   --out data/derived
 ```

@@ -9,7 +9,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from .calibration import fit_weights, load_support_matrix, rmse
+from .calibration import DEFAULT_RHO_VALUES, fit_weights, load_support_matrix, rmse
 from .metadata import marginals_from_metadata, weighted_truth_from_respondents
 from .parsing import parse_support
 
@@ -49,7 +49,7 @@ def run_loo(
     two_step_path: Path | None = None,
     rho_values: list[float] | None = None,
 ) -> dict[str, str]:
-    rho_values = rho_values or [0.0003, 0.001, 0.003, 0.01, 0.03]
+    rho_values = rho_values or DEFAULT_RHO_VALUES
     parsed_points_path: Path | None = None
     if support_path is None:
         if raw_path is None:

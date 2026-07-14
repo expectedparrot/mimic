@@ -3,13 +3,19 @@ from __future__ import annotations
 import csv
 import json
 import os
+import sys
 import tempfile
+import types
 import unittest
+import zipfile
 from pathlib import Path
+from unittest.mock import patch
 
 import pandas as pd
 
+from mimic.calibration import DEFAULT_RHO_VALUES, FitResult, regularization_selection_score
 from mimic.cli import main
+from mimic.parsing import load_results_ep_to_pandas
 
 
 def write_json(path: Path, data: dict) -> None:
@@ -50,6 +56,50 @@ def write_raw(path: Path) -> None:
 
 
 class MimicCliTests(unittest.TestCase):
+    def test_results_ep_zip_file_uses_edsl_git_loader(self) -> None:
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            results_path = root / "mini.results.ep"
+            with zipfile.ZipFile(results_path, "w") as zf:
+                zf.writestr("manifest.json", "{}")
+
+            calls: list[str] = []
+
+            class FakeLoadedResults:
+                def to_pandas(self, remove_prefix: bool = False) -> pd.DataFrame:
+                    return pd.DataFrame([{"scenario.job_id": "s1", "answer.resp": "{}"}])
+
+            class FakeGit:
+                @staticmethod
+                def load(path: str) -> FakeLoadedResults:
+                    calls.append(path)
+                    return FakeLoadedResults()
+
+            class FakeResults:
+                git = FakeGit()
+
+                @staticmethod
+                def from_dict(data: dict) -> FakeLoadedResults:
+                    raise AssertionError("zip package should not be parsed as JSON")
+
+                @staticmethod
+                def load(path: str) -> FakeLoadedResults:
+                    raise AssertionError("zip package should not use extension-appending loader")
+
+            fake_edsl = types.SimpleNamespace(Results=FakeResults)
+            with patch.dict(sys.modules, {"edsl": fake_edsl}):
+                df = load_results_ep_to_pandas(results_path)
+
+            self.assertEqual(calls, [str(results_path)])
+            self.assertEqual(df.loc[0, "scenario.job_id"], "s1")
+
+    def test_default_rho_grid_and_selection_penalize_collapse(self) -> None:
+        self.assertIn(0.1, DEFAULT_RHO_VALUES)
+        self.assertIn(0.3, DEFAULT_RHO_VALUES)
+        collapsed = FitResult(weights=pd.Series([1.0]).to_numpy(), held_in_residual=0.1, effective_support=4.0, converged=True)
+        diffuse = FitResult(weights=pd.Series([1.0]).to_numpy(), held_in_residual=0.104, effective_support=85.0, converged=True)
+        self.assertLess(regularization_selection_score(diffuse), regularization_selection_score(collapsed))
+
     def test_support_build_parse_and_loo(self) -> None:
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

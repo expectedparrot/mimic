@@ -18,7 +18,7 @@ from .artifacts import (
     predict_from_weights,
     write_report,
 )
-from .calibration import fit_weights, load_support_matrix, write_fit_outputs
+from .calibration import DEFAULT_RHO_VALUES, fit_weights, load_support_matrix, write_fit_outputs
 from .ep_commands import export_support_jobs
 from .errors import MimicError
 from .evaluation import run_loo
@@ -403,7 +403,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--respondents")
     p.add_argument("--exclude-item", action="append")
     p.add_argument("--include-item", action="append")
-    p.add_argument("--rho", nargs="+", type=float, default=[0.0003, 0.001, 0.003, 0.01, 0.03])
+    p.add_argument("--rho", nargs="+", type=float, default=DEFAULT_RHO_VALUES)
     p.add_argument("--tag", required=True)
     p.add_argument("--out", required=True)
     p.set_defaults(func=cmd_fit)
@@ -415,7 +415,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--respondents")
     p.add_argument("--one-shot")
     p.add_argument("--two-step")
-    p.add_argument("--rho", nargs="+", type=float, default=[0.0003, 0.001, 0.003, 0.01, 0.03])
+    p.add_argument("--rho", nargs="+", type=float, default=DEFAULT_RHO_VALUES)
     p.add_argument("--tag", required=True)
     p.add_argument("--out", required=True)
     p.set_defaults(func=cmd_loo)
